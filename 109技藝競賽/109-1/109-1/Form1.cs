@@ -10,6 +10,7 @@ namespace _109_1
         public Form1()
         {
             InitializeComponent();
+            MessageBox.Show("test");
         }
 
         private void button2_Click(object sender, EventArgs e)
