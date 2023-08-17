@@ -29,7 +29,7 @@ namespace _109_6
         }
         static void Main(string[] args)
         {
-            Console.Write("Enter orgfilename:");//C:\Users\user\Desktop\Q6
+            Console.Write("Enter orgfilename:");
             org = new Data(new Bitmap(@Console.ReadLine()));//輸入Bitmap點陣圖
             Console.Write("Enter pattern filename:");
             pattern = new Data(new Bitmap(@Console.ReadLine()));

@@ -29,7 +29,7 @@ namespace _109_6另解
         }
         static void Main(string[] args)
         {
-            Console.Write("Enter orgfilename:");//C:\Users\user\Desktop\Q6
+            Console.Write("Enter orgfilename:");
             org = new Data(File.OpenText(@Console.ReadLine()));//輸入TXT文字檔
             Console.Write("Enter pattern filename:");
             pattern = new Data(File.OpenText(@Console.ReadLine()));
