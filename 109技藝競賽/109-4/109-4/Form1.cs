@@ -19,6 +19,7 @@ namespace _109_4
         public static Graphics g2;
         public static Random rnd = new Random();
         public static Pen pen = new Pen(Color.Black, 3);
+        public static Color black = Color.FromArgb(0, 0, 0);
         public static List<DashStyle> styles = new List<DashStyle>() { DashStyle.Solid, DashStyle.Dash, DashStyle.Dot, DashStyle.DashDot };
         public Form1()
         {
@@ -44,53 +45,54 @@ namespace _109_4
             }
             pictureBox1.Image = bitmap2;
         }
-
+        public static void loop(Func<int, int, bool> action,int start, int end,int n)
+        {
+            for (int i = start; (i >= start && i < end) || (i <= start && i >= end); i += n)
+            {
+                for (int j = start; (j >= start && j < end) || (j <= start && j >= end); j += n)
+                {
+                    if (action(i, j)) break;
+                }
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 300; i++)
+            loop((i, j) =>
             {
-                for(int j = 0; j < 300; j++)
+                if (bitmap1.GetPixel(i, j) == black)
                 {
-                    if (bitmap1.GetPixel(i, j) == Color.FromArgb(0, 0, 0))
-                    {
-                        setpixel(i, j);
-                        break;
-                    }
+                    setpixel(i, j);
+                    return true;
                 }
-            }
-            for(int i = 0; i < 300; i++)
+                return false;
+            }, 0, 300, 1);
+            loop((i, j) =>
             {
-                for(int j = 0; j < 300; j++)
+                if (bitmap1.GetPixel(j, i) == black)
                 {
-                    if (bitmap1.GetPixel(j, i) == Color.FromArgb(0, 0, 0))
-                    {
-                        setpixel(j, i);
-                        break;
-                    }
+                    setpixel(j, i);
+                    return true;
                 }
-            }
-            for (int i = 299; i >= 0; i--)
+                return false;
+            }, 0, 300, 1);
+            loop((i, j) =>
             {
-                for (int j = 299; j >= 0; j--)
+                if (bitmap1.GetPixel(j, i) == black)
                 {
-                    if (bitmap1.GetPixel(j, i) == Color.FromArgb(0, 0, 0))
-                    {
-                        setpixel(j, i);
-                        break;
-                    }
+                    setpixel(j, i);
+                    return true;
                 }
-            }
-            for (int i = 299; i >= 0; i--)
+                return false;
+            }, 299, 0, -1);
+            loop((i, j) =>
             {
-                for (int j = 299; j >= 0; j--)
+                if (bitmap1.GetPixel(i, j) == black)
                 {
-                    if (bitmap1.GetPixel(i, j) == Color.FromArgb(0, 0, 0))
-                    {
-                        setpixel(i, j);
-                        break;
-                    }
+                    setpixel(i, j);
+                    return true;
                 }
-            }
+                return false;
+            }, 299, 0, -1);
             pictureBox2.Image = bitmap2;
         }
         public static void setpixel(int x,int y)

@@ -9,9 +9,9 @@ namespace _109_3
         {
             while (true)
             {
-                int val = Int16.Parse(Console.ReadLine());
+                int val = int.Parse(Console.ReadLine() + "");
                 List<string> result = new List<string>();
-                int[]ans=new int[val];
+                int[] ans = new int[val];
                 for(int i = 1; i <= val; i++)
                 {
                     ans[i - 1] = i;
@@ -19,7 +19,7 @@ namespace _109_3
                 while (true)
                 {
                     List<int> col = ans.ToList();
-                    List<int> list = (Console.ReadLine().Split(' ')).Select<string, int>(x => Int16.Parse(x)).ToList();
+                    List<int> list = ((Console.ReadLine() + "").Split(' ')).Select<string, int>(x => int.Parse(x)).ToList();
                     Stack<int> stack = new Stack<int>();
                     int count = 0;
                     if (list[0] == 0 && list.Count == 1) break;
@@ -53,12 +53,7 @@ namespace _109_3
                         }
                     }
                 }
-                string line = "";
-                foreach(string data in result)
-                {
-                    line += data + "\r\n";
-                }
-                Console.WriteLine(line);
+                Console.WriteLine(string.Join("\r\n", result));
             }
         }
     }

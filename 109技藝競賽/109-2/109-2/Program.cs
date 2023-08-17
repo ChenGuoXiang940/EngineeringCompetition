@@ -12,7 +12,7 @@ namespace _109_2
     {
         static void Main(string[] args)
         {
-            Console.Write("輸入檔案名:");//C:\Users\user\Desktop\109-2測資
+            Console.Write("輸入檔案名:");
             string path = Console.ReadLine();
             StreamReader din = File.OpenText(@Path.Combine(path, "LabelData.txt"));
             string line;
