@@ -36,64 +36,58 @@ namespace 陳國翔_Q3
         private void button1_Click(object sender, EventArgs e)
         {
             Reset();
-            for (int i = 0; i < 16; i++)
+            Array.ForEach(pic, item => item.BackColor = getc());
+        }
+        public static void loop(Action<int, int> action, int end1, int end2)
+        {
+            for (int i = 0; i < end1; i++)
             {
-                pic[i].BackColor = getc();
+                for (int j = 0; j < end2; j++)
+                {
+                    action(i, j);
+                }
             }
         }
-
+        public static void Swap(ref PictureBox p1,ref PictureBox p2)
+        {
+            Color color = p1.BackColor;
+            p1.BackColor = p2.BackColor;
+            p2.BackColor = color;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             Reset();
-            for (int i = 0; i < 4; i++)
+            loop((i, j) =>
             {
-                for (int j = 0; j < 2; j++)
-                {
-                    Color color = pic[i * 4 + 1 - j].BackColor;
-                    Color color2 = pic[i * 4 + 2 + j].BackColor;
-                    pic[i * 4 + 2 + j].BackColor = color;
-                    pic[i * 4 + 1 - j].BackColor = color2;
-                }
-            }
+                Swap(ref pic[i * 4 + 1 - j], ref pic[i * 4 + 2 + j]);
+            }, 4, 2);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Reset();
-            for (int i = 0; i < 4; i++)
+            loop((i, j) =>
             {
-                for (int j = 0; j < 2; j++)
-                {
-                    Color color = pic[4 - j * 4 + i].BackColor;
-                    Color color2 = pic[8 + j * 4 + i].BackColor;
-                    pic[8 + j * 4 + i].BackColor = color;
-                    pic[4 - j * 4 + i].BackColor = color2;
-                }
-            }
+                Swap(ref pic[4 - j * 4 + i], ref pic[8 + j * 4 + i]);
+            }, 4, 2);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Reset();
-            for(int i = 0; i < 4; i++)
+            loop((i, j) =>
             {
-                for(int j = 0; j < 4; j++)
-                {
-                    pic[i * 4 + j].BackColor = pic2[12 + i - j * 4].BackColor;
-                }
-            }
+                pic[i * 4 + j].BackColor = pic2[12 + i - j * 4].BackColor;
+            }, 4, 4);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             Reset();
-            for (int i = 0; i < 4; i++)
+            loop((i, j) =>
             {
-                for (int j = 0; j < 4; j++)
-                {
-                    pic[12 + i - j * 4].BackColor = pic2[i * 4 + j].BackColor;
-                }
-            }
+                pic[12 + i - j * 4].BackColor = pic2[i * 4 + j].BackColor;
+            }, 4, 4);
         }
 
         private void button6_Click(object sender, EventArgs e)

@@ -16,10 +16,9 @@ namespace 陳國翔_Q2
         {
             InitializeComponent();
         }
-
+        public static string text = "";
         private void button1_Click(object sender, EventArgs e)
         {
-            string text = textBox1.Text;
             if (text.Length < 8 || text.Length > 20)
             {
                 MessageBox.Show("超出範圍重新輸入");
@@ -38,7 +37,6 @@ namespace 陳國翔_Q2
         {
             try
             {
-                string text = textBox1.Text;
                 int a = 0, b = 0;
                 for (int i = 0; i < text.Length; i++)
                 {
@@ -67,7 +65,24 @@ namespace 陳國翔_Q2
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void CheckText(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 20)
+            {
+                MessageBox.Show("超出範圍重新輸入");
+            }
+            else
+            {
+                text = textBox1.Text.ToString();
+            }
+            textBox1.Text = text.ToString();
         }
     }
 }

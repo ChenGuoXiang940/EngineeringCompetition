@@ -8,11 +8,11 @@ namespace 陳國翔_Q5
         {
             Func<List<double>, string> tostr = (x) => String.Join(" ", x.Select(item => item.ToString("0.00")).ToArray());
             Console.Write("Enter filename:");
-            StreamReader din = new StreamReader(@Console.ReadLine());
+            StreamReader din = new StreamReader(@Console.ReadLine() + "");
             List<List<double>> map = new List<List<double>>();
             string line = "";
             Console.WriteLine("所輸入的對稱矩陣:");
-            while (!string.IsNullOrEmpty(line = din.ReadLine()))
+            while (!string.IsNullOrEmpty(line = din.ReadLine() + ""))
             {
                 map.Add(line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(item => double.Parse(item)).ToList());
                 Console.WriteLine(tostr(map.Last()));

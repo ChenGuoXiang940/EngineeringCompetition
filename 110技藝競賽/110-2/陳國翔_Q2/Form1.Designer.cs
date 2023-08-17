@@ -42,26 +42,30 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label1.Location = new System.Drawing.Point(35, 9);
+            this.label1.Location = new System.Drawing.Point(52, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.Size = new System.Drawing.Size(106, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "輸入字串";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox1.Location = new System.Drawing.Point(112, 6);
+            this.textBox1.Location = new System.Drawing.Point(168, 9);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(391, 27);
+            this.textBox1.Size = new System.Drawing.Size(584, 36);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.CheckText);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button1.Location = new System.Drawing.Point(37, 59);
+            this.button1.Location = new System.Drawing.Point(56, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 45);
+            this.button1.Size = new System.Drawing.Size(174, 68);
             this.button1.TabIndex = 2;
             this.button1.Text = "分別長度";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,9 +74,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button2.Location = new System.Drawing.Point(38, 110);
+            this.button2.Location = new System.Drawing.Point(57, 165);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 45);
+            this.button2.Size = new System.Drawing.Size(174, 68);
             this.button2.TabIndex = 3;
             this.button2.Text = "判斷";
             this.button2.UseVisualStyleBackColor = true;
@@ -81,9 +86,10 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button3.Location = new System.Drawing.Point(37, 172);
+            this.button3.Location = new System.Drawing.Point(56, 258);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 45);
+            this.button3.Size = new System.Drawing.Size(174, 68);
             this.button3.TabIndex = 4;
             this.button3.Text = "清除";
             this.button3.UseVisualStyleBackColor = true;
@@ -92,9 +98,10 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("新細明體", 12F);
-            this.button4.Location = new System.Drawing.Point(175, 172);
+            this.button4.Location = new System.Drawing.Point(262, 258);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(116, 45);
+            this.button4.Size = new System.Drawing.Size(174, 68);
             this.button4.TabIndex = 5;
             this.button4.Text = "結束";
             this.button4.UseVisualStyleBackColor = true;
@@ -104,25 +111,27 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label2.Location = new System.Drawing.Point(194, 76);
+            this.label2.Location = new System.Drawing.Point(291, 114);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.Size = new System.Drawing.Size(0, 24);
             this.label2.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label3.Location = new System.Drawing.Point(194, 121);
+            this.label3.Location = new System.Drawing.Point(291, 182);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 16);
+            this.label3.Size = new System.Drawing.Size(0, 24);
             this.label3.TabIndex = 7;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 219);
+            this.ClientSize = new System.Drawing.Size(772, 328);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
@@ -131,8 +140,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "密碼分析";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

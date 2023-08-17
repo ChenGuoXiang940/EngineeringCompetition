@@ -15,7 +15,7 @@ namespace 陳國翔_Q1
         public static Bitmap bitmap = new Bitmap(300, 300);
         public static Graphics g;
         public static Pen pen = new Pen(Color.Black, 3);
-        public static Pen penR = new Pen(Color.Red, 3);
+        public static Pen penR = new Pen(Color.Red, 6);
         public Form1()
         {
             InitializeComponent();

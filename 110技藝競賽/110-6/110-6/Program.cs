@@ -9,7 +9,7 @@ namespace _110_6
             int count = 0;
             while (count < 100)
             {
-                string line = Console.ReadLine();
+                string line = Console.ReadLine() + "";
                 if (line.Replace(" ","") == "") break;
                 int[] str = (line.Split(' ')).Select<string, int>(x => Int16.Parse(x)).ToArray();
                 col[count, 0] = str[0];
