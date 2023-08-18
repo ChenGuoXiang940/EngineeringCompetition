@@ -33,54 +33,37 @@ namespace _108_1
             {
                 balances += 50;
             }
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
-            radioButton3.Checked = false;
+            radioButton1.Checked = radioButton2.Checked = radioButton3.Checked = false;
             textBox1.Text = String.Format("{0:0.0}", balances);
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        public void check(int price,string name)
         {
-            if (balances >= 35)
+            if (balances >= price)
             {
-                balances -= 35;
-                mg += "送出Cola,";
+                balances -= price;
+                mg += name;
             }
             label6.Text = mg.TrimEnd(',');
             textBox1.Text = String.Format("{0:0.0}", balances);
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            check(35, "送出Cola,");
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (balances >= 30)
-            {
-                balances -= 30;
-                mg += "送出PEPSO,";
-            }
-            label6.Text = mg.TrimEnd(',');
-            textBox1.Text = String.Format("{0:0.0}", balances);
+            check(30, "送出PEPSO,");
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            if(balances >= 25)
-            {
-                balances -= 25;
-                mg += "送出Diet Cola,";
-            }
-            label6.Text = mg.TrimEnd(',');
-            textBox1.Text = String.Format("{0:0.0}", balances);
+            check(25, "送出Diet Cola,");
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if(balances >= 30)
-            {
-                balances -= 30;
-                mg += "送出Diet PEPSO,";
-            }
-            label6.Text = mg.TrimEnd(',');
-            textBox1.Text = String.Format("{0:0.0}", balances);
+            check(30, "送出Diet PEPSO,");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -97,11 +80,6 @@ namespace _108_1
             {
                 label6.Text = "";
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

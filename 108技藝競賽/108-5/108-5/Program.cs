@@ -10,7 +10,7 @@ namespace _108_5
     {
         static void Main(string[] args)
         {
-            Console.Write("請輸入大地遊戲關卡文字檔檔名:");//C:\Users\user\Desktop\108-5測資\ex1.txt
+            Console.Write("請輸入大地遊戲關卡文字檔檔名:");
             string path = Console.ReadLine();
             Console.WriteLine($"你輸入的檔名為\'{path}\'");
             StreamReader din = File.OpenText(path);

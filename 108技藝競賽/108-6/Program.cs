@@ -1,135 +1,112 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using ssi = System.Collections.Generic.SortedDictionary<string, int>;
+using ssss = System.Collections.Generic.SortedDictionary<string, System.Collections.Generic.SortedSet<string>>;
 namespace _108_6
 {
     class Program
     {
-        public struct type1
-        {
-            public string name;
-            public string in1;
-            public string in2;
-            public string out1;
-        }
-        public struct type2
-        {
-            public string name;
-            public string in1;
-            public string out1;
-        }
+        /*
+         * 想法: 鍵入任意小圓盤名稱（把它當作父節點），找出它的子節點。
+         * 因為父節點對應的子節點不是唯一的（例如 f 有 h、g），它所有的子節點都需要找到。
+         * 找到的子節點再從子節點回溯到其父節點，判斷兩個數值（d、f 和 f、e）是否為 1。
+         * 如果為 1，則將父節點的兩個數值設為 0，子節點數值設為 1。
+         */
+        public static ssss p = new ssss();//父節點對應子節點
+        public static ssi q = new ssi();  //節點對應數值
+        public static ssss t = new ssss();//節點對應轉移棒
+        public static Dictionary<string, (string, string)> net = new Dictionary<string, (string, string)>();            //節點對應兩個父節點
+        public static string record = "";
         static void Main()
         {
-            List<string> list = new List<string>();
-            Console.WriteLine("鍵入「輸入小圓盤」的數目及其名稱:");
-            string[] str1 = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-            list.AddRange(str1);
-            list.RemoveAt(list.Count - str1.Length);
-            Console.WriteLine("鍵入「內部小圓盤」的數目及其名稱:");
-            string[] str2 = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-            list.AddRange(str2);
-            list.RemoveAt(list.Count - str2.Length);
-            Console.WriteLine("鍵入「輸出小圓盤」的數目及其名稱:");
-            string[] str3 = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-            list.AddRange(str3);
-            list.RemoveAt(list.Count - str3.Length);
-            string[] list2 = new string[list.Count];
-            int[] list3 = new int[list.Count];
-            bool fg = true;
-            bool fg2 = true;
-            bool fg3 = true;
-            List<type1> col = new List<type1>();
-            List<type2> col2 = new List<type2>();
+            q["0"] = 1;
+            Console.WriteLine("鍵入「輸入小圓盤」的數目及名稱:");
+            Console.ReadLine();
+            Console.WriteLine("鍵入「內部小圓盤」的數目及名稱:");
+            Console.ReadLine();
+            Console.WriteLine("鍵入「輸出小圓盤」的數目及名稱:");
+            Console.ReadLine();
             Console.WriteLine("鍵入「2-1 轉移棒」的名稱及小圓盤的名稱:");
-            while (fg)
-            {               
-                string[] arr = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-                col.Add(new type1() { name = arr[0], in1 = arr[1], in2 = arr[2], out1 = arr[3] });
-                list2[list.IndexOf(arr[1])] += arr[0] + " ";
-                list2[list.IndexOf(arr[2])] += arr[0] + " ";
-                list2[list.IndexOf(arr[3])] += arr[0] + " ";
-                Console.Write("Continue?(1/0):");
-                string str = Console.ReadLine();
-                if (str == "0") fg = false;
-            }
+            do readtext();
+            while (check());
             Console.WriteLine("鍵入「1-1 轉移棒」的名稱及小圓盤的名稱:");
-            while (fg2)
-            {               
-                string[] arr = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-                col2.Add(new type2() { name = arr[0], in1 = arr[1], out1 = arr[2] });
-                list2[list.IndexOf(arr[1])] += arr[0] + " ";
-                list2[list.IndexOf(arr[2])] += arr[0] + " ";
-                Console.Write("Continue?(1/0):");
-                string str = Console.ReadLine();
-                if (str == "0") fg2 = false;
-            }
-            string st = "";
-            for(int i = 0; i < col.Count; i++)
+            do readtext();
+            while (check());
+            Console.WriteLine("轉移棒與小圓盤的關係:" + record);
+            Console.WriteLine("小圓盤與轉移棒的關係:\r\n" + display(t));
+            do
             {
-                st += $"{col[i].name}: {col[i].in1} {col[i].in2} {col[i].out1} ";
-            }
-            for(int i = 0; i < col2.Count; i++)
-            {
-                st += $"{col2[i].name}: {col2[i].in1} {col2[i].out1} ";
-            }
-            Console.WriteLine("轉移棒與小圓盤的關係" + st.TrimEnd(' '));
-            string st2 = "";
-            for(int i = 0; i < list.Count; i++)
-            {
-                st2 += $"{list[i]}: {list2[i]}";
-            }
-            Console.WriteLine("小圓盤與轉移盤的關係:" + st2);
-            while (fg3)
-            {
-                Console.Write("鍵入將放權仗的小圓盤名稱:");
-                string name = Console.ReadLine();
-                list3[list.IndexOf(name)]++;                
-                string st3 = "";
-                for(int i = 0; i < list.Count; i++)
+                Queue<string> queue = new Queue<string>();
+                Console.Write("鍵入將放權杖的小圓盤名字:");
+                queue.Enqueue(Console.ReadLine() + "");
+                q[queue.Peek()] = 1;
+                Console.WriteLine("查看各個小圓盤權杖的情況:" + display(q));
+                Console.WriteLine("執行轉移棒.");
+                while (queue.Count > 0)
                 {
-                    st3 += $"{list[i]}: {list3[i]} ";
-                }
-                Console.WriteLine("查看各個小圓盤權仗名稱:" + st3);               
-                while (true)
-                {
-                    bool fg4 = false;
-                    for (int i = 0; i < col.Count; i++)
+                    string key = queue.Dequeue();
+                    if (!p.ContainsKey(key)) continue;
+                    foreach(string child in p[key])
                     {
-                        if (col[i].in1 == name || col[i].in2 == name)
+                        if (q[net[child].Item1] == 1 && q[net[child].Item2] == 1)
                         {
-                            if (list3[list.IndexOf(col[i].in1)] == 1 && list3[list.IndexOf(col[i].in2)] == 1)
-                            {
-                                list3[list.IndexOf(col[i].out1)] = 1;
-                                list3[list.IndexOf(col[i].in1)] = 0;
-                                list3[list.IndexOf(col[i].in2)] = 0;
-                                name = col[i].out1;
-                                fg4 = true;
-                                break;
-                            }
+                            q[net[child].Item1] = q[net[child].Item2] = 0;
+                            q[child] = 1;
+                            queue.Enqueue(child);
+                            q["0"] = 1;
                         }
                     }
-                    for (int i = 0; i < col2.Count; i++)
-                    {
-                        if (col2[i].in1 == name)
-                        {
-                            list3[list.IndexOf(col2[i].out1)] = 1;
-                            list3[list.IndexOf(col2[i].in1)] = 0;
-                            name = col2[i].out1;
-                            fg4 = true;
-                            break;
-                        }
-                    }
-                    if (!fg4) break;
-                }              
-                string st4 = "";
-                for (int i = 0; i < list.Count; i++)
-                {
-                    st4 += $"{list[i]}: {list3[i]} ";
                 }
-                Console.WriteLine("執行轉移棒\r\n查看各個小圓盤權仗的名稱:" + st4);
-                Console.Write("Continue?(1/0):");
-                string str = Console.ReadLine();
-                if (str == "0") fg3 = false;
-            }
+                Console.WriteLine("查看各個小圓盤權杖的情況:" + display(q));
+
+            } while (check());
             Console.ReadKey();
+        }
+        public static void readtext()
+        {
+            string[] arr = (Console.ReadLine() + "").Split(' ').ToArray();           
+            if(arr.Length == 4)
+            {
+                record += $"{arr[0]}: {arr[1]} {arr[2]} {arr[3]} ";
+                net[arr[3]] = (arr[1], arr[2]);
+                additem(p, arr[1], arr[3]);
+                additem(p, arr[2], arr[3]);
+            }
+            else
+            {
+                record += $"{arr[0]}: {arr[1]} {arr[2]} ";
+                net[arr[2]] = (arr[1], "0");
+                additem(p, arr[1], arr[2]);
+            }
+            for(int i = 1; i < arr.Length; i++)
+            {
+                additem(t, arr[i], arr[0]);
+                q[arr[i]] = 0;
+            }
+        }
+        public static void additem(ssss sorted,string key,string value)
+        {
+            if (!sorted.ContainsKey(key)) sorted[key] = new SortedSet<string>();
+            sorted[key].Add(value);
+        }
+        public static string display<TKey, TValue>(IEnumerable<KeyValuePair<TKey, TValue>> sorted)
+        {
+            string result = "";
+            Array.ForEach(sorted.ToArray(), item => result += $"{item.Key}:{(typeof(TValue) == typeof(int) ? item.Value : string.Join(" ", (IEnumerable<string>)item.Value))} ");
+            if (result[0] == '0') return result.Substring(3);
+            return result;
+        }
+        public static bool check()
+        {
+            while (true)
+            {
+                Console.Write("Continue?(1/0):");
+                string str = Console.ReadLine() + "";
+                if (str == "1") return true;
+                else if (str == "0") return false;
+            }
         }
     }
 }

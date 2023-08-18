@@ -55,7 +55,7 @@ namespace _108_2
         public static void Main()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            string path = @"C:\Users\user002\Desktop\歷屆學長111\108技藝競賽\108-2測資.txt";
+            string path = Console.ReadLine() + "";
             StreamReader din = new StreamReader(path, CodePagesEncodingProvider.Instance.GetEncoding("big5"));
             Console.WriteLine("讀入:" + path + "檔");
             din.ReadLine();
@@ -66,7 +66,7 @@ namespace _108_2
             List<string> check = new List<string>();
             while (true)
             {
-                line = din.ReadLine();
+                line = din.ReadLine() + "";
                 if (line == null || line == "") break;
                 List<string> col = line.Split('\t').ToList();
                 double btc = double.Parse(col[2]);
