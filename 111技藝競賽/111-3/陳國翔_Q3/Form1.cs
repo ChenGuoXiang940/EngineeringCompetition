@@ -57,47 +57,30 @@ namespace 陳國翔_Q3
         private void button2_Click(object sender, EventArgs e)
         {
             Reset();
-            loop((i, j) =>
-            {
-                Swap(ref pic[i * 4 + 1 - j], ref pic[i * 4 + 2 + j]);
-            }, 4, 2);
+            loop((i, j) => Swap(ref pic[i * 4 + 1 - j], ref pic[i * 4 + 2 + j]), 4, 2);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Reset();
-            loop((i, j) =>
-            {
-                Swap(ref pic[4 - j * 4 + i], ref pic[8 + j * 4 + i]);
-            }, 4, 2);
+            loop((i, j) => Swap(ref pic[4 - j * 4 + i], ref pic[8 + j * 4 + i]), 4, 2);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Reset();
-            loop((i, j) =>
-            {
-                pic[i * 4 + j].BackColor = pic2[12 + i - j * 4].BackColor;
-            }, 4, 4);
+            loop((i, j) => pic[i * 4 + j].BackColor = pic2[12 + i - j * 4].BackColor, 4, 4);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             Reset();
-            loop((i, j) =>
-            {
-                pic[12 + i - j * 4].BackColor = pic2[i * 4 + j].BackColor;
-            }, 4, 4);
+            loop((i, j) => pic[12 + i - j * 4].BackColor = pic2[i * 4 + j].BackColor, 4, 4);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
