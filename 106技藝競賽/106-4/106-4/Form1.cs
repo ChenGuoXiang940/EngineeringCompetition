@@ -66,16 +66,6 @@ namespace _106_4
             }
             Label9.Text = $"機器人向：" + (Math.Sign(f) == 1 ? "左" : "右");
         }
-
-        private void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
     public class Data
     {

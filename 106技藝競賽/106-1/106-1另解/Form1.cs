@@ -81,7 +81,7 @@ namespace _106_1另解
             int p = 0;
             Type u1 = col[0].type;
             Type u2 = col[1].type;
-            while (p < q)
+            while (p++ < q)
             {
                 double mse = 0;
                 for (int i = 0; i < col.Count; i++)
@@ -89,14 +89,7 @@ namespace _106_1另解
                     double dist1 = GetDist(col[i].type, u1);
                     double dist2 = GetDist(col[i].type, u2);
                     col[i].group = dist1 < dist2 ? 0 : 1;
-                    if (dist1 < dist2)
-                    {
-                        mse += Math.Sqrt(Math.Pow(col[i].type.math - u1.math, 2) + Math.Pow(col[i].type.eng - u1.eng, 2));
-                    }
-                    else
-                    {
-                        mse += Math.Sqrt(Math.Pow(col[i].type.math - u2.math, 2) + Math.Pow(col[i].type.eng - u2.eng, 2));
-                    }
+                    mse += dist1 < dist2 ? dist1 : dist2;
                 }
                 mse /= col.Count;
                 mses.Add(mse);
@@ -119,7 +112,6 @@ namespace _106_1另解
                 }
                 u1 = new Type(u1.math / count, u1.eng / count);
                 u2 = new Type(u2.math / (col.Count - count), u2.eng / (col.Count - count));
-                p++;
             }
             string str = "";
             col.ForEach(item => str += $"{1 + item.group,3} ");
@@ -145,6 +137,7 @@ namespace _106_1另解
                 g.DrawString($"{(int)(higthy - leny * i)}", font, Brushes.Black, 8, 25 + 40 * i);
             }
             lenx = x / 10;
+            mses.Insert(0, 10 + mses.Max());
             for (int i = 0; i < x; i++)
             {
                 g.DrawLine(penB, 25 + (int)(lenx * i) * 30, 315 - (float)((mses[(int)(lenx * i)] - lowy) / leny * 40), 25 + (int)(lenx * (i + 1)) * 30, 315 - (float)((mses[(int)(lenx * (i + 1))] - lowy) / leny * 40));

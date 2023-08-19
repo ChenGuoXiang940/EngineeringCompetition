@@ -6,7 +6,7 @@ namespace _106_6
     {
         static void Main()
         {
-            int val = Int16.Parse(Console.ReadLine());
+            int val = int.Parse(Console.ReadLine() + "");
             BigInteger big = new BigInteger();
             big = 1;
             for(int i = 1; i <= val; i++)

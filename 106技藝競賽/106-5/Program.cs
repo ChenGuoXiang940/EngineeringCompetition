@@ -8,11 +8,12 @@ namespace _106_5
         static void Main()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            StreamReader din = new StreamReader(@"C:\Users\user002\Desktop\歷屆學長111\106技藝競賽\106-5測資\data1.txt", CodePagesEncodingProvider.Instance.GetEncoding("big5"));
+            string path = Console.ReadLine() + "";
+            StreamReader din = new StreamReader(@path, CodePagesEncodingProvider.Instance.GetEncoding("big5"));
             din.ReadLine();
             din.ReadLine();
             din.ReadLine();
-            List<double> col = din.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select<string, double>(x => double.Parse(x)).ToList();
+            List<double> col = (din.ReadLine()+"").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select<string, double>(x => double.Parse(x)).ToList();
             double[] b = new double[col.Count];
             double[] yn1 = new double[col.Count];
             double len1 = 0;
