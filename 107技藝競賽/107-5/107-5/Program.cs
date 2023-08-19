@@ -12,47 +12,34 @@ namespace _107_5
         {
             while (true)
             {
-                //7
-                //-2 5 3 -6 4 -8 6
-                //6
-                //1 -2 3 5 -3 2
-                //6
-                //0 -2 3 5 -1 2
                 Console.ReadLine();
-                int[] num = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
-                int[] num2 = new int[num.Length + 1];
-                int total = 0;
-                num2[0] = 0;
-                for (int i = 1; i < num2.Length; i++)
+                int[] nums = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
+                int n = nums.Length;
+                int maxSum = nums[0];
+                int currentSum = nums[0];
+                int start = 0;     //起點索引
+                int end = 0;       //終點索引
+                int tempStart = 0; //臨時起點索引
+                for (int i = 1; i < n; i++)
                 {
-                    total += num[i - 1];
-                    num2[i - 1] = total;
-                }
-                Data data = new Data(0, -1, -1);
-                for (int i = 0; i < num2.Length; i++)
-                {
-                    for (int j = i + 1; j < num2.Length; j++)
+                    if (nums[i] > currentSum + nums[i])
                     {
-                        if (data.total < num2[j] - num2[i])
-                        {
-                            data = new Data(num2[j] - num2[i], i, j);
-                        }
+                        currentSum = nums[i];
+                        tempStart = i;
+                    }
+                    else
+                    {
+                        currentSum += nums[i];
+                    }
+                    if (currentSum > maxSum)
+                    {
+                        maxSum = currentSum;
+                        start = tempStart;
+                        end = i;
                     }
                 }
-                Console.WriteLine($"{data.total}\r\n{data.left + 1} {data.right}");
+                Console.WriteLine($"{maxSum}\r\n{start} {end}");
             }
-        }
-    }
-    public class Data
-    {
-        public int total;
-        public int left;
-        public int right;
-        public Data(int total,int left,int right)
-        {
-            this.total = total;
-            this.left = left;
-            this.right = right;
         }
     }
 }

@@ -19,14 +19,11 @@ namespace _107_6
         {
             InitializeComponent();
             int i = 0;
-            foreach(string item in hash.Keys)
+            foreach (DictionaryEntry de in hash)
             {
-                panel1.Controls.Add(GetLabel(item, ++i * 50, 0));
-            }
-            i = 0;
-            foreach(string item in hash.Values)
-            {
-                panel1.Controls.Add(GetLabel(item, ++i * 50, 50));
+                panel1.Controls.Add(GetLabel(de.Key.ToString(), i * 50, 0));
+                panel1.Controls.Add(GetLabel(de.Value.ToString(), i * 50, 50));
+                i++;
             }
         }
         public static Label GetLabel(string text,int x,int y)

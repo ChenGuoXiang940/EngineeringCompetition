@@ -7,7 +7,7 @@ namespace _107_2
         public static List<List<double>> nums = new List<List<double>>() { new List<double>(), new List<double>(), new List<double>() };
         static void Main()
         {
-            string path = @"C:\Users\user002\Desktop\歷屆學長111\107技藝競賽\107-2測資\data3.txt";
+            string path = Console.ReadLine() + "";
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             StreamReader din = new StreamReader(path, CodePagesEncodingProvider.Instance.GetEncoding("big5"));            
             for(int i = 0; i < 3; i++)

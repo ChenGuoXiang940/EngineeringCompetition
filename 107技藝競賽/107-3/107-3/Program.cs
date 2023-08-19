@@ -6,7 +6,7 @@ namespace _107_3
         static void Main(string[] args)
         {
             Console.WriteLine("請輸入密碼:");
-            string line = Console.ReadLine();
+            string line = Console.ReadLine() + "";
             bool fg = line.Length >= 8 && line.Length <= 128 ? true : false;
             Console.WriteLine("密碼長度:" + line.Length);
             int letter1 = 0;
