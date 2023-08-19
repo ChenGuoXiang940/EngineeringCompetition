@@ -48,7 +48,7 @@ namespace 陳國翔_Q1
                 }
             }
             col.Reverse();
-            textBox3.Text = String.Join(" ", col);
+            textBox3.Text = string.Join(" ", col);
         }
 
         private void button2_Click(object sender, EventArgs e)

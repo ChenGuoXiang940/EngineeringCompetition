@@ -83,7 +83,7 @@ namespace _105_3
                         Draw.f3();
                         break;
                 }
-                Console.SetCursorPosition(0, 60);
+                Console.SetCursorPosition(0, 49);
                 if (!check()) break;
             }
             Console.ReadKey();
