@@ -65,10 +65,5 @@ namespace _104_3
             val2 = Math.Round(val2, 10);
             textBox4.Text = fg ? "-" + val.ToString() : val.ToString();
         }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
