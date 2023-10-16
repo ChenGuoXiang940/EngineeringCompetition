@@ -18,11 +18,6 @@ namespace _104_6
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -36,7 +31,7 @@ namespace _104_6
         private void button2_Click(object sender, EventArgs e)
         {
             string target = textBox1.Text;
-            if (target == null || target == "")
+            if (string.IsNullOrEmpty(target))
             {
                 MessageBox.Show("未輸入欲搜尋的字串");
             }

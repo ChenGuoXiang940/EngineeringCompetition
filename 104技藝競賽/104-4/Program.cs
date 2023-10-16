@@ -1,16 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using ld = System.Collections.Generic.List<double>;
 namespace _104_4
 {
     class Program
     {
         static void Main()
         {
-            bool fg = true;
-            List<double> up = new List<double>();
-            List<double> mid = new List<double>();
-            List<double> down = new List<double>();
-            List<double> count = new List<double>();
-            while (fg)
+            ld up = new ld();
+            ld mid = new ld();
+            ld down = new ld();
+            ld count = new ld();
+            do
             {
                 Console.Write("請選擇操作項目:\r\n\t<1>輸入模型資料\r\n\t<2>計算平均相似度\r\n\t<3>顯示各資料相似度\r\n慶選擇:");
                 switch (Console.ReadLine())
@@ -18,25 +18,25 @@ namespace _104_4
                     case "1":
                         count.Clear();
                         Console.Write("\r\n輸入模型資料,總筆數為:");
-                        int times = Int16.Parse(Console.ReadLine());
+                        int times = Int16.Parse(Console.ReadLine() + "");
                         Console.Write("\r\n    序列< X軸>:");
                         Console.ReadLine();
                         Console.Write("數值串列<上限>:");
-                        up = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
+                        up = (Console.ReadLine() + "").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
                         Console.Write("數值串列<中限>:");
-                        mid = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
+                        mid = (Console.ReadLine() + "").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
                         Console.Write("數值串列<下限>:");
-                        down = Console.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
+                        down = (Console.ReadLine() + "").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
                         break;
                     case "2":
                         Console.Write("請輸入[資料串列]檔名:");
-                        string path = Console.ReadLine();//C:\Users\user002\Desktop\歷屆學長111\104技藝競賽\104-4測資\data1.txt
+                        string path = Console.ReadLine() + "";
                         try
                         {
                             StreamReader din = File.OpenText(@path);
                             Console.WriteLine("已開啟[資料串列]檔名:" + path);
-                            List<double> value = din.ReadLine().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
-                            for(int i = 0;i < up.Count; i++)
+                            ld value = (din.ReadLine() + "").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(x => double.Parse(x)).ToList();
+                            for (int i = 0; i < up.Count; i++)
                             {
                                 if (value[i] > up[i] || value[i] < down[i])
                                 {
@@ -60,18 +60,21 @@ namespace _104_4
                         break;
                     case "3":
                         string str2 = "";
-                        foreach(double item in count)
+                        foreach (double item in count)
                         {
                             str2 += Math.Round(item, 3) + " ";
                         }
                         Console.WriteLine("各資料相似度為:" + str2.TrimEnd(' '));
                         break;
                 }
-                Console.Write("\r\n繼續:請按1,結束:請按0:");
-                string str = Console.ReadLine();
-                if (str == "0") fg = false;
-            }
+            } while (check());
             Console.ReadKey();
+        }
+        public static bool check()
+        {
+            Console.Write("\r\n繼續:請按1,結束:請按0:");
+            string str = Console.ReadLine() + "";
+            return (str != "0");
         }
     }
 }
