@@ -14,13 +14,6 @@ namespace 陳國翔_Q1
                 /*整數轉字串左補 y 個空格*/
                 Func<string, int, string> pad = (x, y) => x.PadLeft(y);
                 /*矩陣相乘*/
-                /*記位置
-                 a:    b:
-                 0 1   0 2 
-                 0 1   1 3
-                 2 3   0 2
-                 2 3   1 3
-                 */
                 Func<ulong[], ulong[], ulong[]> mult = (a, b) => new ulong[4] { 
                     a[0] * b[0] + a[1] * b[2],
                     a[0] * b[1] + a[1] * b[3],
