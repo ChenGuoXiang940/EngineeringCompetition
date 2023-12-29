@@ -49,10 +49,7 @@ namespace _112_5
                 for (int j = i + 1; j < col.Count; j++)
                 {
                     Rectangle rect = Rectangle.Intersect(col[i], col[j]);
-                    if (rect.Width != 0 && rect.Height != 0)
-                    {
-                        g.FillRectangle(new SolidBrush(Color.Pink), rect);
-                    }
+                    g.FillRectangle(new SolidBrush(Color.Pink), rect);
                 }
             }
             pictureBox2.Image = bitmap;
